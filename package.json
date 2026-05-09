@@ -1,0 +1,20 @@
+{
+  "name": "diener-mint-app",
+  "version": "0.1.0",
+  "description": "Personal NFT mint site with Express backend, MySQL data layer, Solidity smart contracts, and IPFS storage.",
+  "main": "src/main.mjs",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node src/main.mjs",
+    "dev": "nodemon src/main.mjs"
+  },
+  "author": "Michael Diener",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
