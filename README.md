@@ -20,5 +20,7 @@ Instructor: Brittni Watkins. Course developer: Dave Smith.
 
 ## Status
 
-Module 1 complete: development environment configured, 
-toolchain verified (Git, Node, NPM).
+Module 1 complete. Toolchain verified:
+- Git 2.50.1 (Apple Git-155)
+- Node.js v24.14.0
+- npm 11.9.0

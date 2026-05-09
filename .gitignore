@@ -141,3 +141,30 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# ============================================================
+# Custom additions for diener-mint-app (CRCP 6340)
+# ============================================================
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows system files (for any future collaborators on Windows)
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# JetBrains IDEs (WebStorm, IntelliJ)
+.idea/
+
+# VSCode project settings
+# Note: distinct from .vscode-test which is already covered above
+.vscode/
+
+# Vim/Emacs swap files
+*.swp
+*.swo
+*~
