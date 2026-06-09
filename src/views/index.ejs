@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+
+    <!-- Google Font: Playfair Display for headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ============ HEADER / NAVBAR ============ -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">Diener Mint</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/#featured">Featured</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ SPLASH / HERO ============ -->
+    <header class="py-5 bg-dark text-white text-center">
+        <div class="container py-5">
+            <img src="https://placehold.co/180x180/0a0a0a/f5f5f5?text=DM" alt="Diener Mint mark" class="mb-4 rounded-circle" width="150" height="150">
+            <h1 class="display-3 fw-bold mb-3" style="font-family: 'Playfair Display', serif;">Generative Sketches, Minted On-Chain</h1>
+            <p class="lead col-lg-8 mx-auto mb-4">An experimental NFT project exploring the intersection of code, performance, and ownership.</p>
+            <a href="#featured" class="btn btn-light btn-lg px-4">See the Work</a>
+        </div>
+    </header>
+
+    <!-- ============ FEATURED PROJECT ============ -->
+    <section id="featured" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <h2 class="mb-0" style="font-family: 'Playfair Display', serif;">Featured Project</h2>
+                    <p class="text-muted">The current piece on the chain.</p>
+                </div>
+                <div class="col-md-4 text-md-end align-self-center">
+                    <a href="/projects.html" class="btn btn-outline-dark">View All Projects <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="https://placehold.co/800x600/1a1a1a/f5f5f5?text=Sketch+No.+1" alt="Featured generative sketch" class="img-fluid rounded-start w-100 h-100" style="object-fit: cover;">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body p-4 p-md-5">
+                            <small class="text-muted text-uppercase">Sketch No. 1</small>
+                            <h3 class="card-title mt-2 mb-3" style="font-family: 'Playfair Display', serif;">Untitled (First Mint)</h3>
+                            <p class="card-text">A short paragraph describing the featured sketch. What it explores. Why it matters. What you were thinking about when you made it. Replace this with your real artist statement when the piece is ready.</p>
+                            <a href="/projects.html" class="btn btn-dark mt-2">Open Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <img src="https://placehold.co/300x300/2a2a2a/f5f5f5?text=MD" alt="Portrait of Michael Diener" class="img-fluid rounded-circle shadow-sm" width="260">
+                </div>
+                <div class="col-md-8">
+                    <h2 class="mb-3" style="font-family: 'Playfair Display', serif;">About</h2>
+                    <p class="lead mb-3">Michael Diener is an artist, performer, and creative technologist based in Phoenix.</p>
+                    <p>His work moves between acting, code, and applied behavioral systems. After twelve years in professional acting and prior research work in AI safety, he is now exploring how generative and on-chain tools can hold the same weight as a performance.</p>
+                    <p class="mb-4">This project is part of his MA in Creative Technology at SMU Meadows.</p>
+                    <a href="/contact.html" class="btn btn-dark">Get in Touch <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="mt-auto py-4 bg-dark text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2026 Michael Diener. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="https://github.com/OrignalMikeyD" class="text-white me-3 text-decoration-none" aria-label="GitHub profile" target="_blank" rel="noopener">
+                        <i class="bi bi-github fs-4"></i>
+                    </a>
+                    <a href="/contact.html" class="text-white text-decoration-none" aria-label="Contact page">
+                        <i class="bi bi-envelope fs-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
