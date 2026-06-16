@@ -32,7 +32,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/#featured">Featured</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -49,30 +49,30 @@
         </div>
     </header>
 
-    <!-- ============ FEATURED PROJECT ============ -->
+    <!-- ============ FEATURED PROJECT (random, from the database) ============ -->
     <section id="featured" class="py-5">
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-8">
                     <h2 class="mb-0" style="font-family: 'Playfair Display', serif;">Featured Project</h2>
-                    <p class="text-muted">The current piece on the chain.</p>
+                    <p class="text-muted">A piece from the chain, chosen at random each visit.</p>
                 </div>
                 <div class="col-md-4 text-md-end align-self-center">
-                    <a href="/projects.html" class="btn btn-outline-dark">View All Projects <i class="bi bi-arrow-right"></i></a>
+                    <a href="/projects" class="btn btn-outline-dark">View All Projects <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="card shadow-sm border-0">
                 <div class="row g-0">
                     <div class="col-md-6">
-                        <img src="https://placehold.co/800x600/1a1a1a/f5f5f5?text=Sketch+No.+1" alt="Featured generative sketch" class="img-fluid rounded-start w-100 h-100" style="object-fit: cover;">
+                        <img src="<%= featured.image_url %>" alt="<%= featured.title %>" class="img-fluid rounded-start w-100 h-100" style="object-fit: cover;">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body p-4 p-md-5">
-                            <small class="text-muted text-uppercase">Sketch No. 1</small>
-                            <h3 class="card-title mt-2 mb-3" style="font-family: 'Playfair Display', serif;">Untitled (First Mint)</h3>
-                            <p class="card-text">A short paragraph describing the featured sketch. What it explores. Why it matters. What you were thinking about when you made it. Replace this with your real artist statement when the piece is ready.</p>
-                            <a href="/projects.html" class="btn btn-dark mt-2">Open Project</a>
+                            <small class="text-muted text-uppercase"><%= featured.medium %></small>
+                            <h3 class="card-title mt-2 mb-3" style="font-family: 'Playfair Display', serif;"><%= featured.title %></h3>
+                            <p class="card-text"><%= featured.description %></p>
+                            <a href="/projects/<%= featured.id %>" class="btn btn-dark mt-2">Open Project</a>
                         </div>
                     </div>
                 </div>
