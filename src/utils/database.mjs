@@ -41,3 +41,23 @@ export async function getProjectById(id) {
     const [rows] = await conn.execute('SELECT * FROM projects WHERE id = ?', [id]);
     return rows[0]; // undefined if no project matches that id
 }
+
+// Insert a new project from the Add Project form and return its generated id.
+// Like getProjectById, this uses execute() with ? placeholders, so the form values
+// are treated as data and never as SQL. That is what prevents SQL injection.
+export async function createProject(project) {
+    const conn = await connect();
+    const [result] = await conn.execute(
+        `INSERT INTO projects (title, image_url, description, medium, price_eth, minted_date)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [
+            project.title,
+            project.image_url,
+            project.description || null,
+            project.medium || null,
+            project.price_eth,
+            project.minted_date
+        ]
+    );
+    return result.insertId; // the id MySQL assigned to the new row
+}

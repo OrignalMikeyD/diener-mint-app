@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+    <!-- ============ ADD PROJECT FORM (writes to the database) ============ -->
+    <section class="py-5 flex-grow-1">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="mb-2" style="font-family: 'Playfair Display', serif;">Add a Project</h1>
+                    <p class="text-muted mb-4">Create a new entry. It saves to the MySQL database and then appears on the Projects page.</p>
+
+                    <!-- A standard HTML form. It POSTs to /projects, where the server inserts the row. -->
+                    <form action="/projects" method="POST" class="row g-3">
+                        <div class="col-12">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="image_url" class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="image_url" name="image_url" placeholder="https://your-space.nyc3.cdn.digitaloceanspaces.com/piece.jpg" required>
+                            <div class="form-text">Paste the DigitalOcean Spaces CDN link for the image.</div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="medium" class="form-label">Medium / Edition</label>
+                            <input type="text" class="form-control" id="medium" name="medium" placeholder="Generative sketch, 1 of 1">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="price_eth" class="form-label">Price (ETH)</label>
+                            <input type="number" step="0.0001" min="0" class="form-control" id="price_eth" name="price_eth">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="minted_date" class="form-label">Minted date</label>
+                            <input type="date" class="form-control" id="minted_date" name="minted_date">
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-dark">Save Project</button>
+                            <a href="/projects" class="btn btn-link text-decoration-none">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<%- include('partials/footer') %>
