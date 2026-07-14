@@ -1,61 +1,84 @@
-# diener-mint-app
+# Module 9 Gap Fixes — Runbook
 
-Personal NFT mint site with Express backend, MySQL data layer, 
-Solidity smart contracts and IPFS storage.
+This closes the three pieces your app was missing against the Module 9 milestone. I tested all the code against your exact files: every page renders, the new route ordering holds, and creating a project works end to end. The only part I cannot do for you is the DigitalOcean Spaces setup, because it lives in your account. That part is spelled out below and takes about 15 minutes.
 
-## Context
+## What changed, and why
 
-Built for CRCP 6340 (Creative Coding for Application Development), 
-SMU Meadows School of the Arts, Summer 2026.
-Instructor: Brittni Watkins. Course developer: Dave Smith.
+**Gap 1: New project page.** Your app could read projects but not create them. I added a form page, a route to show it, and a route that inserts the row into MySQL.
 
-## Stack
+**Gap 2: Content delivery network.** Your images load from picsum.photos, which is a third-party placeholder service, not a DigitalOcean CDN. The milestone requires a CDN on DigitalOcean. You upload your images to a Space, then run one script to point the database at the new URLs.
 
-- Node.js / Express / EJS
-- MySQL
-- Bootstrap
-- Solidity (deployed to EVM testnet, blockchain TBD)
-- IPFS for decentralized asset storage
-- DigitalOcean for production deployment
+**Gap 3: Header and footer as EJS partials.** Your nav and footer were copy-pasted into every page. I pulled them into two shared partials, and every page now includes them. Change the nav once and it changes everywhere.
 
-## Roadmap
+## File placement
 
-The 15-week semester is structured in four phases, each closing with a Functionality Presentation milestone.
+Drop these into your repo at the exact paths shown. Six replace existing files, three are new.
 
-### Phase 1: Web Application Scaffold (Modules 1-4)
+| File | Path in your repo | New or replace |
+|------|-------------------|----------------|
+| main.mjs | `src/main.mjs` | replace |
+| database.mjs | `src/utils/database.mjs` | replace |
+| index.ejs | `src/views/index.ejs` | replace |
+| projects.ejs | `src/views/projects.ejs` | replace |
+| project.ejs | `src/views/project.ejs` | replace |
+| header.ejs | `src/views/partials/header.ejs` | new |
+| footer.ejs | `src/views/partials/footer.ejs` | new |
+| new.ejs | `src/views/new.ejs` | new |
+| update-cdn-images.mjs | `update-cdn-images.mjs` (project root) | new |
 
-- Module 1: Development environment, GitHub repository, Node.js and npm toolchain
-- Module 2: Express application, EJS templating, HTML/CSS/Bootstrap integration
-- Module 3: Routing, navigation, page structure
-- Module 4: Contact form with server-side validation and NodeMailer email delivery
+You will need to create the `src/views/partials/` folder. Nothing else in your project changes, and no new npm packages are required.
 
-**Milestone 1 (May 26):** Working landing page with splash screen, navigation, and a functional contact form that delivers email via NodeMailer.
+## Gap 2 steps: the DigitalOcean CDN
 
-### Phase 2: Data Layer and Deployment (Modules 5-9)
+This is the only manual part. Do it once.
 
-- Modules 5-6: MySQL database backend, schema design, query integration
-- Modules 7-8: DigitalOcean deployment, custom domain configuration
-- Module 9: Database-driven project cards rendered on the live site
+1. In the DigitalOcean dashboard, open Spaces Object Storage and create a Space. Pick the region closest to you, give it a name, and leave file listing restricted.
+2. Turn on the CDN for that Space. DigitalOcean gives you an endpoint that looks like `https://your-space.nyc3.cdn.digitaloceanspaces.com`.
+3. Upload your three images. If you want to keep the current art, the originals are at `https://picsum.photos/seed/diener1/800/600`, `.../diener2/...`, and `.../diener3/...`. Download those, or use your own work.
+4. For each uploaded file, set its permission to public, then copy its CDN link.
+5. Open `update-cdn-images.mjs`, paste the three CDN links next to the matching project titles, save, and from your project root run `node update-cdn-images.mjs`. It updates the three rows in place, so it will not wipe any projects you added through the form.
 
-**Milestone 2 (June 30):** Live deployed site with MySQL-backed project listings.
+After this, every image on your site loads from the DigitalOcean CDN, and any new project you add through the form uses a Spaces URL too.
 
-### Phase 3: Smart Contract Development (Modules 10-11)
+## Test it locally
 
-- Module 10: Solidity authoring, OpenZeppelin component integration, Hardhat testing framework
-- Module 11: Smart contract deployment to an EVM testnet (Polygon, Base, Optimism, Avalanche, or Arbitrum)
+From your project root:
 
-**Milestone 3 (July 14):** Smart contract deployed and verified on the chosen testnet.
+```
+npm install
+npm run dev
+```
 
-### Phase 4: Project Manager and End-to-End Integration (Modules 12-15)
+Then check, in order:
 
-- Modules 12-13: Project manager build, generative NFT sketch packaging, IPFS asset uploads
-- Modules 14-15: Wallet connection flow, end-to-end mint integration, full system testing
+1. Open `/projects` and confirm the Add Project button shows.
+2. Open `/projects/new`, fill the form, and submit. It should save and send you to the new project's page.
+3. Reload `/projects` and confirm the new card is there.
+4. Open the home page and a single project page and confirm the shared header and footer look right.
 
-**Milestone 4 (August 11):** Fully functional NFT mint site where visitors connect a crypto wallet and mint a token on the testnet.
+## One thing worth understanding
 
-## Status
+In `main.mjs`, the route for `/projects/new` sits **above** the route for `/projects/:id` on purpose. Express checks routes top to bottom. If `:id` came first, it would treat the word "new" as an id, run the detail lookup, and your form page would 404. Order matters here, so keep `/projects/new` above `/projects/:id` if you move things around.
 
-Module 1 complete. Toolchain verified:
-- Git 2.50.1 (Apple Git-155)
-- Node.js v24.14.0
-- npm 11.9.0
+## Commit with a clean history
+
+The milestone also grades your Git history for clear, meaningful messages. Commit these in logical chunks rather than one lump:
+
+```
+git add src/views/partials/ src/views/index.ejs src/views/projects.ejs src/views/project.ejs
+git commit -m "Refactor shared header and footer into EJS partials"
+
+git add src/views/new.ejs src/main.mjs src/utils/database.mjs
+git commit -m "Add new project page with create route and DB insert"
+
+git add update-cdn-images.mjs
+git commit -m "Add script to point project images at DigitalOcean Spaces CDN"
+
+git push
+```
+
+If your DigitalOcean App is set to auto-deploy from GitHub, the push triggers a new deploy. If not, open the app and deploy the latest commit by hand. The CDN image swap runs against your database directly, so it takes effect without a redeploy.
+
+## What this gets you
+
+After these steps, your app has the four required pages built on EJS partials, reads and writes a MySQL database, and serves images from a DigitalOcean CDN. That is the full Module 9 functionality, ready to demonstrate at Module 11.
